@@ -1,0 +1,16 @@
+﻿using MoldApi.DTOs;
+using MoldApi.Entities;
+
+namespace MoldApi.Interfaces
+{
+    public interface IMoldRepository
+    {
+        Task<List<Mold>> GetAll();
+        Task<Mold> GetById(int id);
+
+        Task<List<MoldDropdownDto>> GetMoldDropdown();
+
+        Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto);
+    }
+
+}
