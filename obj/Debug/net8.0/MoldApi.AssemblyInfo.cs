@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MoldApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5e277f5fafc2e799a3e9861f333f5d15631a630")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+987a0cbf9794e2eeb7c8e2e1a0b96eec251d536b")]
 [assembly: System.Reflection.AssemblyProductAttribute("MoldApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MoldApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
