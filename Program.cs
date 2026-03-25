@@ -17,8 +17,20 @@ builder.Services.AddScoped<IMoldRepository, MoldRepository>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-var app = builder.Build();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactDev",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173") // React dev URL
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+var app = builder.Build();
+app.UseCors("AllowReactDev");
 
 app.UseSwagger();
 app.UseSwaggerUI(c =>
