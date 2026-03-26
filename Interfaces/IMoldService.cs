@@ -8,6 +8,7 @@ namespace MoldApi.Interfaces
         Task<MoldDto> GetMoldById(int id);
 
         Task<List<MoldDropdownDto>> GetMoldDropdown();
+        Task<List<MoldDropdownDto>> GetPMDropdown();
         Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto);
 
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);
