@@ -71,6 +71,14 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpDelete("pmplan/{id}")]
+        public async Task<IActionResult> DeletePMPlan(int id)
+        {
+            var result = await _service.DeletePMPlan(id);
+            if (result.Contains("not found") || result.Contains("Error"))
+                return NotFound(result);
+            return Ok(result);
+        }
 
         [HttpGet("pmschedulebyid/{id}")]
         public async Task<IActionResult> GetPMScheduleById(int id)
