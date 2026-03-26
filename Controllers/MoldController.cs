@@ -42,6 +42,12 @@ namespace MoldApi.Controllers
             var result = await _service.GetPMDropdown();
             return Ok(result);
         }
+        [HttpGet("PMPlan")]
+        public async Task<IActionResult> GetPMPlanDetails()
+        {
+            var result = await _service.GetPMPlanDetails();
+            return Ok(result);
+        }
 
         [HttpPost("pmschedule")]
         public async Task<IActionResult> InsertPMSchedule(CreateMoldPMScheduleDto dto)
