@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactDev",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173") // React dev URL
+            policy.WithOrigins("http://localhost:5173","https://localhost:5173", "https://mold.larcherp.com", "http://mold.larcherp.com") // React dev URL
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });

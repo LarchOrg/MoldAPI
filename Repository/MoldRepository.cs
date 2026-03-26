@@ -101,5 +101,21 @@ namespace MoldApi.Repository
             return ex.Message; // will capture RAISERROR from SP
         }
     }
+        public async Task<string> DeletePMPlan(int id)
+    {
+        try
+        {
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC API_Pr_Delete_mouldPrev_plan @iID",
+                new SqlParameter("@iID", id)
+            );
+
+            return "Deleted Successfully";
+        }
+        catch (Exception ex)
+        {
+            return ex.Message; // will capture RAISERROR from SP
+        }
+    }
 }
 }

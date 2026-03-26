@@ -62,6 +62,10 @@ namespace MoldApi.Services
         {
             return await _repo.UpdateMoldPMSchedule(dto);
         }
+        public async Task<string> DeletePMPlan(int id)
+        {
+            return await _repo.DeletePMPlan(id);
+        }
 
         public async Task<MoldPMScheduleIdDto> GetPMScheduleById(int id)
         {
