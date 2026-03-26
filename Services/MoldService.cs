@@ -47,6 +47,10 @@ namespace MoldApi.Services
         {
             return await _repo.GetPMDropdown();
         }
+        public async Task<List<MouldPMPlanDto>> GetPMPlanDetails()
+        {
+            return await _repo.GetPMPlanDetails();
+        }
 
         public async Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto)
         {
