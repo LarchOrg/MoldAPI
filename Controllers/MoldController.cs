@@ -48,5 +48,28 @@ namespace MoldApi.Controllers
             return Ok(result);
         }
 
+
+        [HttpPut("pmscheduleUpdate")]
+        public async Task<IActionResult> UpdatePMSchedule(UpdateMoldPMScheduleDto dto)
+        {
+            var result = await _service.UpdateMoldPMSchedule(dto);
+
+            if (result.Contains("Already"))
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+
+        [HttpGet("pmschedulebyid/{id}")]
+        public async Task<IActionResult> GetPMScheduleById(int id)
+        {
+            var result = await _service.GetPMScheduleById(id);
+
+            if (result == null)
+                return NotFound("PM Schedule not found");
+
+            return Ok(result);
+        }
+
     }
 }
