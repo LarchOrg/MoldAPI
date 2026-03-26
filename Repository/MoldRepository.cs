@@ -33,6 +33,12 @@ namespace MoldApi.Repository
                 .FromSqlRaw("EXEC Api_GetMoldDropdown")
                 .ToListAsync();
         }
+        public async Task<List<MoldDropdownDto>> GetPMDropdown()
+        {
+            return await _context.Set<MoldDropdownDto>()
+                .FromSqlRaw("EXEC API_pr_fetch_pmfreq_drp")
+                .ToListAsync();
+        }
 
         public async Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto)
         {
