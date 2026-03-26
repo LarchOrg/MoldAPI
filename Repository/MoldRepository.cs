@@ -53,5 +53,41 @@ namespace MoldApi.Repository
                 return ex.Message;
             }
         }
+
+
+
+        public async Task<MoldPMScheduleIdDto> GetPMScheduleById(int id)
+        {
+            var param = new SqlParameter("@Id", id);
+
+            // Execute SP and fetch results
+            var resultList = await _context.MoldPMScheduleIdDto
+                .FromSqlRaw("EXEC API_fetch_mould_PM_scheduleBy_id @Id", param)
+                .AsNoTracking()     // keyless entity, no tracking needed
+                .ToListAsync();      // run SQL on server
+
+            // Pick the first record
+            var result = resultList.FirstOrDefault();
+
+            return result;
+        }
+
+        public async Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto)
+    {
+        try
+        {
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC Api_update_MouldPm_Targetdate @Id, @dDate",
+                new SqlParameter("@Id", dto.Id),
+                new SqlParameter("@dDate", dto.dDate)
+            );
+
+            return "Updated Successfully";
+        }
+        catch (Exception ex)
+        {
+            return ex.Message; // will capture RAISERROR from SP
+        }
     }
+}
 }
