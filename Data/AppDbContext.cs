@@ -18,7 +18,7 @@ namespace MoldApi.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MoldDropdownDto>().HasNoKey();
-            modelBuilder.Entity<MoldDropdownDto>().HasNoKey();
+            modelBuilder.Entity<MouldPMPlanDto>().HasNoKey();
             modelBuilder.Entity<MoldPMScheduleIdDto>().HasNoKey();
 
         }
