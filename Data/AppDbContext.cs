@@ -20,11 +20,17 @@ namespace MoldApi.Data
             modelBuilder.Entity<MoldDropdownDto>().HasNoKey();
             modelBuilder.Entity<MouldPMPlanDto>().HasNoKey();
             modelBuilder.Entity<MoldPMScheduleIdDto>().HasNoKey();
-
+            modelBuilder.Entity<CheckAreaDto>().HasNoKey();
+            modelBuilder.Entity<CheckMethodDto>().HasNoKey();
+            modelBuilder.Entity<CheckPointDto>().HasNoKey();
+            modelBuilder.Entity<ReqConditionDto>().HasNoKey();
         }
 
-      
 
+        public DbSet<CheckAreaDto> CheckAreaDtos { get; set; }
+        public DbSet<CheckMethodDto> CheckMethodDtos { get; set; }
+        public DbSet<CheckPointDto> CheckPointDtos { get; set; }
+        public DbSet<ReqConditionDto> ReqConditionDtos { get; set; }
         public DbSet<MoldPMScheduleIdDto> MoldPMScheduleIdDto { get; set; }
     }
 }

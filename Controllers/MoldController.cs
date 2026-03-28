@@ -36,6 +36,13 @@ namespace MoldApi.Controllers
             var result = await _service.GetMoldDropdown();
             return Ok(result);
         }
+
+        [HttpGet("alldropdowns")]
+        public async Task<IActionResult> GetAllDropdowns()
+        {
+            var result = await _service.GetAllDropdowns();
+            return Ok(result);
+        }
         [HttpGet("Imgdropdown")]
         public async Task<IActionResult> GetMoldImgDropdown()
         {

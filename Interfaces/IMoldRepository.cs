@@ -13,6 +13,10 @@ namespace MoldApi.Interfaces
         Task<List<MoldDropdownDto>> GetPMDropdown();
         Task<List<MouldPMPlanDto>> GetPMPlanDetails();
 
+        Task<List<CheckAreaDto>> GetMoldCheckArea();
+        Task<List<CheckPointDto>> GetMoldCheckPoint();
+        Task<List<ReqConditionDto>> GetMoldReqCondition();
+        Task<List<CheckMethodDto>> GetMoldCheckMethod();
         Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto);
 
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);

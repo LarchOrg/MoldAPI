@@ -9,6 +9,8 @@ namespace MoldApi.Interfaces
 
         Task<List<MoldDropdownDto>> GetMoldDropdown();
         Task<List<MoldDropdownDto>> GetMoldImgDropdown();
+
+        Task<AllDropdownsDto> GetAllDropdowns();
         Task<List<MoldDropdownDto>> GetPMDropdown();
         Task<List<MouldPMPlanDto>> GetPMPlanDetails();
         Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto);
