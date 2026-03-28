@@ -39,6 +39,33 @@ namespace MoldApi.Repository
                 .FromSqlRaw("EXEC API_pr_fetch_Imagespec_mst1")
                 .ToListAsync();
         }
+        public async Task<List<CheckAreaDto>> GetMoldCheckArea()
+        {
+            return await _context.Set<CheckAreaDto>()
+                .FromSqlRaw("EXEC API_Pr_Fetch_Cheack_Areas_Drp")
+                .ToListAsync();
+        }
+
+        public async Task<List<CheckPointDto>> GetMoldCheckPoint()
+        {
+            return await _context.Set<CheckPointDto>()
+                .FromSqlRaw("EXEC API_Pr_Fetch_Maintenance_CheckPoint_Drp")
+                .ToListAsync();
+        }
+
+        public async Task<List<ReqConditionDto>> GetMoldReqCondition()
+        {
+            return await _context.Set<ReqConditionDto>()
+                .FromSqlRaw("EXEC API_Pr_Fetch_Req_Condition_Drp")
+                .ToListAsync();
+        }
+
+        public async Task<List<CheckMethodDto>> GetMoldCheckMethod()
+        {
+            return await _context.Set<CheckMethodDto>()
+                .FromSqlRaw("EXEC API_Pr_Fetch_Maintenance_CheckMethod_Drp")
+                .ToListAsync();
+        }
         public async Task<List<MoldDropdownDto>> GetPMDropdown()
         {
             return await _context.Set<MoldDropdownDto>()
