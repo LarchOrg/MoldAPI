@@ -9,6 +9,7 @@ namespace MoldApi.Interfaces
         Task<Mold> GetById(int id);
 
         Task<List<MoldDropdownDto>> GetMoldDropdown();
+        Task<List<MoldDropdownDto>> GetMoldImgDropdown();
         Task<List<MoldDropdownDto>> GetPMDropdown();
         Task<List<MouldPMPlanDto>> GetPMPlanDetails();
 

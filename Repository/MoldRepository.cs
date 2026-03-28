@@ -33,6 +33,12 @@ namespace MoldApi.Repository
                 .FromSqlRaw("EXEC Api_GetMoldDropdown")
                 .ToListAsync();
         }
+        public async Task<List<MoldDropdownDto>> GetMoldImgDropdown()
+        {
+            return await _context.Set<MoldDropdownDto>()
+                .FromSqlRaw("EXEC API_pr_fetch_Imagespec_mst1")
+                .ToListAsync();
+        }
         public async Task<List<MoldDropdownDto>> GetPMDropdown()
         {
             return await _context.Set<MoldDropdownDto>()
