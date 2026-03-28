@@ -99,7 +99,31 @@ namespace MoldApi.Repository
             }
         }
 
+        public async Task<string> InsertMaintenanceSpecEntry(CreateMaintenanceSpecEntryDto dto)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    "EXEC pr_insert_Maintenance_Spec_Entry_Mst @iMouldMachineId,  @iCheckPoint, @iCheckMethod, @iPMFreq, @iImgId, @iOrderby, @iCreatedBy, @iCheckAreaId, @iResultId",
+                    
+                    new SqlParameter("@iMouldMachineId", dto.MouldMachineId),
+                    new SqlParameter("@iCheckPoint", dto.CheckPoint),
+                    new SqlParameter("@iCheckMethod", dto.CheckMethod),
+                    new SqlParameter("@iPMFreq", dto.PMFreq),
+                    new SqlParameter("@iImgId", dto.ImgId),
+                    new SqlParameter("@iOrderby", dto.Orderby),
+                    new SqlParameter("@iCreatedBy", dto.CreatedBy),
+                    new SqlParameter("@iCheckAreaId", dto.CheckAreaId),
+                    new SqlParameter("@iResultId", dto.ResultId)
+                );
 
+                return "Inserted Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message; // captures RAISERROR from SP e.g. "This Orderby No Already Exists!"
+            }
+        }
 
         public async Task<MoldPMScheduleIdDto> GetPMScheduleById(int id)
         {

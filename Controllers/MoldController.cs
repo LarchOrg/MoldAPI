@@ -72,7 +72,19 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpPost("maintenancespecentry")]
+        public async Task<IActionResult> InsertMaintenanceSpecEntry(CreateMaintenanceSpecEntryDto dto)
+        {
+            var result = await _service.InsertMaintenanceSpecEntry(dto);
 
+            if (result.Contains("Already Exists"))
+                return BadRequest(result);
+
+            if (result.Contains("Exception") || result.Contains("Error"))
+                return StatusCode(500, result);
+
+            return Ok(result);
+        }
 
         [HttpPut("pmscheduleUpdate")]
         public async Task<IActionResult> UpdatePMSchedule(UpdateMoldPMScheduleDto dto)

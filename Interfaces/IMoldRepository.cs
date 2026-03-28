@@ -16,9 +16,10 @@ namespace MoldApi.Interfaces
         Task<List<CheckAreaDto>> GetMoldCheckArea();
         Task<List<CheckPointDto>> GetMoldCheckPoint();
         Task<List<ReqConditionDto>> GetMoldReqCondition();
+        
         Task<List<CheckMethodDto>> GetMoldCheckMethod();
         Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto);
-
+        Task<string> InsertMaintenanceSpecEntry(CreateMaintenanceSpecEntryDto dto);
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);
         Task<string> DeletePMPlan(int id);
 
