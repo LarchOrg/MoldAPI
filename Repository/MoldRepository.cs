@@ -66,6 +66,12 @@ namespace MoldApi.Repository
                 .FromSqlRaw("EXEC API_Pr_Fetch_Maintenance_CheckMethod_Drp")
                 .ToListAsync();
         }
+        public async Task<List<PMMouldSpecFetchDto>> GetMoldSpecFetch()
+        {
+            return await _context.Set<PMMouldSpecFetchDto>()
+                .FromSqlRaw("EXEC API_pr_fetch_Maintenance_Spec_Entry_mst")
+                .ToListAsync();
+        }
         public async Task<List<MoldDropdownDto>> GetPMDropdown()
         {
             return await _context.Set<MoldDropdownDto>()

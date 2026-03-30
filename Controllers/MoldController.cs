@@ -36,6 +36,12 @@ namespace MoldApi.Controllers
             var result = await _service.GetMoldDropdown();
             return Ok(result);
         }
+        [HttpGet("MoldSpecFetch")]
+        public async Task<IActionResult> GetMoldSpecFetch()
+        {
+            var result = await _service.GetMoldSpecFetch();
+            return Ok(result);
+        }
 
         [HttpGet("alldropdowns")]
         public async Task<IActionResult> GetAllDropdowns()
@@ -72,7 +78,7 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
-        [HttpPost("maintenancespecentry")]
+        [HttpPost("Insertspecentry")]
         public async Task<IActionResult> InsertMaintenanceSpecEntry(CreateMaintenanceSpecEntryDto dto)
         {
             var result = await _service.InsertMaintenanceSpecEntry(dto);
