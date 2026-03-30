@@ -18,6 +18,7 @@ namespace MoldApi.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MoldDropdownDto>().HasNoKey();
+            modelBuilder.Entity<PMMouldSpecFetchDto>().HasNoKey();
             modelBuilder.Entity<MouldPMPlanDto>().HasNoKey();
             modelBuilder.Entity<MoldPMScheduleIdDto>().HasNoKey();
             modelBuilder.Entity<CheckAreaDto>().HasNoKey();
@@ -27,6 +28,7 @@ namespace MoldApi.Data
         }
 
 
+        public DbSet<PMMouldSpecFetchDto> PMMouldSpecFetchDtos { get; set; }
         public DbSet<CheckAreaDto> CheckAreaDtos { get; set; }
         public DbSet<CheckMethodDto> CheckMethodDtos { get; set; }
         public DbSet<CheckPointDto> CheckPointDtos { get; set; }
