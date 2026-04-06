@@ -39,6 +39,18 @@ namespace MoldApi.Repository
                 .FromSqlRaw("EXEC API_pr_fetch_Imagespec_mst1")
                 .ToListAsync();
         }
+        public async Task<List<MoldPlanCheckSheetFetchDto>> GetPMCheckSheetFetch()
+        {
+            return await _context.Set<MoldPlanCheckSheetFetchDto>()
+                .FromSqlRaw("EXEC api_pr_fetch_mould_Daily_PM_schedule")
+                .ToListAsync();
+        }
+        public async Task<List<PMMouldMasterFetchDto>> GetMouldMstFetch()
+        {
+            return await _context.Set<PMMouldMasterFetchDto>()
+                .FromSqlRaw("EXEC Api_pr_fetch_mould_mst")
+                .ToListAsync();
+        }
         public async Task<List<CheckAreaDto>> GetMoldCheckArea()
         {
             return await _context.Set<CheckAreaDto>()
@@ -138,8 +150,8 @@ namespace MoldApi.Repository
             // Execute SP and fetch results
             var resultList = await _context.MoldPMScheduleIdDto
                 .FromSqlRaw("EXEC API_fetch_mould_PM_scheduleBy_id @Id", param)
-                .AsNoTracking()     // keyless entity, no tracking needed
-                .ToListAsync();      // run SQL on server
+                .AsNoTracking()    
+                .ToListAsync();  
 
             // Pick the first record
             var result = resultList.FirstOrDefault();

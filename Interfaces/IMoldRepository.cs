@@ -17,7 +17,8 @@ namespace MoldApi.Interfaces
         Task<List<CheckPointDto>> GetMoldCheckPoint();
         Task<List<ReqConditionDto>> GetMoldReqCondition();
         Task<List<PMMouldSpecFetchDto>> GetMoldSpecFetch();
-        
+        Task<List<MoldPlanCheckSheetFetchDto>> GetPMCheckSheetFetch();
+        Task<List<PMMouldMasterFetchDto>> GetMouldMstFetch();
         Task<List<CheckMethodDto>> GetMoldCheckMethod();
         Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto);
         Task<string> InsertMaintenanceSpecEntry(CreateMaintenanceSpecEntryDto dto);

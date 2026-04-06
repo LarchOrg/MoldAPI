@@ -61,6 +61,18 @@ namespace MoldApi.Controllers
             var result = await _service.GetPMDropdown();
             return Ok(result);
         }
+        [HttpGet("PMCheckSheetFetch")]
+        public async Task<IActionResult> GetPMCheckSheetFetch()
+        {
+            var result = await _service.GetPMCheckSheetFetch();
+            return Ok(result);
+        }
+        [HttpGet("MouldMstFetch")]
+        public async Task<IActionResult> GetMouldMstFetch()
+        {
+            var result = await _service.GetMouldMstFetch();
+            return Ok(result);
+        }
         [HttpGet("PMPlan")]
         public async Task<IActionResult> GetPMPlanDetails()
         {
