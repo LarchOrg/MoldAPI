@@ -10,6 +10,11 @@
         public int Id { get; set; }
         public string CheckAreas { get; set; }
     }
+    public class PartNoDrpDto
+    {
+        public int Id { get; set; }
+        public string PartNo { get; set; }
+    }
 
     public class CheckMethodDto
     {
@@ -33,6 +38,7 @@
     public class AllDropdownsDto
     {
         public List<CheckAreaDto> CheckAreas { get; set; }
+        public List<PartNoDrpDto> PartNoDrp { get; set; }
         public List<CheckMethodDto> CheckMethod { get; set; }
         public List<CheckPointDto> CheckPoint { get; set; }
         public List<ReqConditionDto> ReqCondition { get; set; }

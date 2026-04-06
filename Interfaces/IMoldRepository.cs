@@ -12,7 +12,7 @@ namespace MoldApi.Interfaces
         Task<List<MoldDropdownDto>> GetMoldImgDropdown();
         Task<List<MoldDropdownDto>> GetPMDropdown();
         Task<List<MouldPMPlanDto>> GetPMPlanDetails();
-
+        Task<List<PartNoDrpDto>> GetPartNo();
         Task<List<CheckAreaDto>> GetMoldCheckArea();
         Task<List<CheckPointDto>> GetMoldCheckPoint();
         Task<List<ReqConditionDto>> GetMoldReqCondition();
