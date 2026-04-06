@@ -1,4 +1,4 @@
-using MoldApi.Data;
+﻿using MoldApi.Data;
 using MoldApi.Interfaces;
 using MoldApi.Repository;
 using MoldApi.Services;
@@ -30,6 +30,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.UseHttpsRedirection();
 app.UseCors("AllowReactDev");
 
 app.UseSwagger();

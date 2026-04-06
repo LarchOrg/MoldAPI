@@ -25,9 +25,13 @@ namespace MoldApi.Data
             modelBuilder.Entity<CheckMethodDto>().HasNoKey();
             modelBuilder.Entity<CheckPointDto>().HasNoKey();
             modelBuilder.Entity<ReqConditionDto>().HasNoKey();
+            modelBuilder.Entity<MoldPlanCheckSheetFetchDto>().HasNoKey();
+            modelBuilder.Entity<PMMouldMasterFetchDto>().HasNoKey();
         }
 
 
+        public DbSet<MoldPlanCheckSheetFetchDto> MoldPlanCheckSheetFetchDto { get; set; }
+        public DbSet<PMMouldMasterFetchDto> PMMouldMasterFetchDto { get; set; }
         public DbSet<PMMouldSpecFetchDto> PMMouldSpecFetchDtos { get; set; }
         public DbSet<CheckAreaDto> CheckAreaDtos { get; set; }
         public DbSet<CheckMethodDto> CheckMethodDtos { get; set; }
