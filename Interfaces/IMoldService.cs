@@ -15,9 +15,11 @@ namespace MoldApi.Interfaces
         Task<List<PMMouldSpecFetchDto>> GetMoldSpecFetch();
         Task<List<MoldPlanCheckSheetFetchDto>> GetPMCheckSheetFetch();
         Task<List<PMMouldMasterFetchDto>> GetMouldMstFetch();
+
         Task<List<MouldPMPlanDto>> GetPMPlanDetails();
         Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto);
         Task<string> InsertMaintenanceSpecEntry(CreateMaintenanceSpecEntryDto dto);
+        Task<string> InsertMoldMst(InsertMouldMstDto dto);
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);
         Task<string> DeletePMPlan(int id);
 

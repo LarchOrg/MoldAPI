@@ -5,6 +5,46 @@
         public int MoldId { get; set; }
         public string MoldName { get; set; }
     }
+    public class InsertMouldMstDto
+    {
+
+        public string Code { get; set; }
+        public string Name { get; set; }
+        public string Size { get; set; }
+
+        public long Cavity { get; set; }
+        public long OpeningShot { get; set; }
+        public long LifeShot { get; set; }
+        public long CurrentShot { get; set; }
+
+        public string Location { get; set; }
+        public int Item { get; set; }
+
+        public DateTime UsedFrom { get; set; }
+
+        public string Category { get; set; }
+        public int PMFreq { get; set; }
+
+        public int PMFreqDays { get; set; }
+        public int PMFreqShots { get; set; }
+
+        public string Color { get; set; }
+        public string Supplier { get; set; }
+        public string MakerSupplier { get; set; }
+
+        public string Remarks { get; set; }
+
+        public int CreatedBy { get; set; }
+
+        public string Barcode { get; set; }
+        public string Direction { get; set; }
+    }
+    public class ERRORAPIDTO
+    {
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        public object Data { get; set; }
+    }
     public class CreateMaintenanceSpecEntryDto
     {
        

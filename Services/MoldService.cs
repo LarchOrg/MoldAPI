@@ -92,6 +92,10 @@ namespace MoldApi.Services
         {
             return await _repo.InsertMaintenanceSpecEntry(dto);
         }
+        public async Task<string> InsertMoldMst(InsertMouldMstDto dto)
+        {
+            return await _repo.InsertMoldMst(dto);
+        }
         public async Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto)
         {
             return await _repo.UpdateMoldPMSchedule(dto);

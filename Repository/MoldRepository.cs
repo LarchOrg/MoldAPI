@@ -97,6 +97,73 @@ namespace MoldApi.Repository
                 .ToListAsync();
         }
 
+        public async Task<string> InsertMoldMst(InsertMouldMstDto dto)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    @"EXEC Api_pr_insert_Mould_mst 
+                @vCode,
+                @vName,
+                @vSize,
+                @nCavity,
+                @nOpeningShot,
+                @nLifeShot,
+                @nCurrentShot,
+                @vLocation,
+                @iItem,
+                @dUsedFrom,
+                @vCategory,
+                @vPMFreq,
+                @iPMFreqDays,
+                @iPMFreqShots,
+                @vColor,
+                @vSupplier,
+                @vMakerSupplier,
+                @vRemarks,
+                @iCreatedBy,
+                @vBarcode,
+                @vDirection",
+
+                    new SqlParameter("@vCode", dto.Code ?? (object)DBNull.Value),
+                    new SqlParameter("@vName", dto.Name ?? (object)DBNull.Value),
+                    new SqlParameter("@vSize", dto.Size ?? (object)DBNull.Value),
+
+                    new SqlParameter("@nCavity", dto.Cavity),
+                    new SqlParameter("@nOpeningShot", dto.OpeningShot),
+                    new SqlParameter("@nLifeShot", dto.LifeShot),
+                    new SqlParameter("@nCurrentShot", dto.CurrentShot),
+
+                    new SqlParameter("@vLocation", dto.Location ?? (object)DBNull.Value),
+                    new SqlParameter("@iItem", dto.Item),
+
+                    new SqlParameter("@dUsedFrom", dto.UsedFrom),
+
+                    new SqlParameter("@vCategory", dto.Category ?? (object)DBNull.Value),
+                    new SqlParameter("@vPMFreq", dto.PMFreq),
+
+                    new SqlParameter("@iPMFreqDays", dto.PMFreqDays),
+                    new SqlParameter("@iPMFreqShots", dto.PMFreqShots),
+
+                    new SqlParameter("@vColor", dto.Color ?? (object)DBNull.Value),
+                    new SqlParameter("@vSupplier", dto.Supplier ?? (object)DBNull.Value),
+                    new SqlParameter("@vMakerSupplier", dto.MakerSupplier ?? (object)DBNull.Value),
+
+                    new SqlParameter("@vRemarks", dto.Remarks ?? (object)DBNull.Value),
+
+                    new SqlParameter("@iCreatedBy", dto.CreatedBy),
+
+                    new SqlParameter("@vBarcode", dto.Barcode ?? (object)DBNull.Value),
+                    new SqlParameter("@vDirection", dto.Direction ?? (object)DBNull.Value)
+                );
+
+                return "Inserted Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         public async Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto)
         {
             try

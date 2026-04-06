@@ -103,7 +103,35 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpPost("InsertMould")]
+        public async Task<IActionResult> InsertMoldMst(InsertMouldMstDto dto)
+        {
+            var result = await _service.InsertMoldMst(dto);
 
+            if (result.Contains("Already Code Exist!") || result.Contains("Already Exist!, Use Edit Option"))
+            {
+                return BadRequest(new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            if (result.Contains("Exception") || result.Contains("Error"))
+            {
+                return StatusCode(500, new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            return Ok(new ERRORAPIDTO
+            {
+                Success = true,
+                Message = result
+            });
+        }
         [HttpPut("pmscheduleUpdate")]
         public async Task<IActionResult> UpdatePMSchedule(UpdateMoldPMScheduleDto dto)
         {
