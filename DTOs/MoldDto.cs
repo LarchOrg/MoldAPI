@@ -35,17 +35,16 @@
     }
     public class PMMouldMasterFetchDto
     {
-       
-        public int S_No { get; set; }
+        public long S_No { get; set; }
         public int Id { get; set; }
         public string MouldCode { get; set; }
         public string MouldName { get; set; }
-        public int Size { get; set; }
+        public string Size { get; set; }   
         public int Cavity { get; set; }
         public string PartNo { get; set; }
-        public long CurrentShot { get; set; }
-        public long LifeShot { get; set; }
-        public long OpeningShot { get; set; }
+        public long CurrentShot { get; set; }  
+        public long LifeShot { get; set; }  
+        public long OpeningShot { get; set; } 
         public string Category { get; set; }
         public string Status { get; set; }
     }
