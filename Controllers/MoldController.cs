@@ -29,6 +29,7 @@ namespace MoldApi.Controllers
             var result = await _service.GetMoldById(id);
             return Ok(result);
         }
+        
 
         [HttpGet("dropdown")]
         public async Task<IActionResult> GetDropdown()
@@ -151,6 +152,16 @@ namespace MoldApi.Controllers
             return Ok(result);
         }
 
+        [HttpGet("mouldbyid/{id}")]
+        public async Task<IActionResult> GetMouldMstById(int id)
+        {
+            var result = await _service.GetMouldMstById(id);
+
+            if (result == null)
+                return NotFound("not found");
+
+            return Ok(result);
+        }
         [HttpGet("pmschedulebyid/{id}")]
         public async Task<IActionResult> GetPMScheduleById(int id)
         {
@@ -161,6 +172,7 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+
 
     }
 }

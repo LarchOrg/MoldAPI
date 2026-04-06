@@ -27,6 +27,7 @@ namespace MoldApi.Interfaces
         Task<string> DeletePMPlan(int id);
 
         Task<MoldPMScheduleIdDto> GetPMScheduleById(int id);
+        Task<MouldMstByIdDto> GetMouldMstById(int id);
     }
 
 }

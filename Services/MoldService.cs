@@ -105,6 +105,10 @@ namespace MoldApi.Services
             return await _repo.DeletePMPlan(id);
         }
 
+        public async Task<MouldMstByIdDto> GetMouldMstById(int id)
+        {
+            return await _repo.GetMouldMstById(id);
+        }
         public async Task<MoldPMScheduleIdDto> GetPMScheduleById(int id)
         {
             return await _repo.GetPMScheduleById(id);

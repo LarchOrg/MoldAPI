@@ -20,7 +20,7 @@
         public string Location { get; set; }
         public int Item { get; set; }
 
-        public DateTime UsedFrom { get; set; }
+        public DateOnly UsedFrom { get; set; }
 
         public string Category { get; set; }
         public int PMFreq { get; set; }
@@ -57,6 +57,45 @@
         public int CreatedBy { get; set; }
         public int CheckAreaId { get; set; }
         public int ResultId { get; set; }
+    }
+
+    public class MouldMstByIdDto
+    {
+        public int Id { get; set; }
+
+        public string Code { get; set; }
+        public string BarCode { get; set; }   // matches mld_vBarcode
+
+        public string Name { get; set; }
+        public string Size { get; set; }
+
+        public int Cavity { get; set; }
+        public int OpeningShot { get; set; }
+        public int LifeShot { get; set; }
+        public int CurrentShot { get; set; }
+
+        public string Location { get; set; }
+        public int Item { get; set; }
+
+        public string PartNo { get; set; }
+
+        public string UsedFrom { get; set; }
+
+        public string Category { get; set; }
+
+        public string PMFreq { get; set; }   // varchar in DB
+
+        public int PMFreqDays { get; set; }
+        public int PMFreqShots { get; set; }
+
+        public string Color { get; set; }
+
+        public string Supplier { get; set; }
+        public string MakerSupplier { get; set; }
+
+        public string Remarks { get; set; }
+
+        public string Direction { get; set; }
     }
     public class PMMouldSpecFetchDto
     {
