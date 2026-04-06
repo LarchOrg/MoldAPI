@@ -49,13 +49,16 @@ namespace MoldApi.Services
             var methods = await _repo.GetMoldCheckMethod();
             var points = await _repo.GetMoldCheckPoint();
             var conditions = await _repo.GetMoldReqCondition();
+            var partno = await _repo.GetPartNo();
+
 
             return new AllDropdownsDto
             {
                 CheckAreas = areas,
                 CheckMethod = methods,
                 CheckPoint = points,
-                ReqCondition = conditions
+                ReqCondition = conditions,
+                PartNoDrp = partno
             };
         }
         public async Task<List<MoldDropdownDto>> GetMoldImgDropdown()

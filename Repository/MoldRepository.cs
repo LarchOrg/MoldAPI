@@ -64,6 +64,12 @@ namespace MoldApi.Repository
                 .FromSqlRaw("EXEC API_Pr_Fetch_Maintenance_CheckPoint_Drp")
                 .ToListAsync();
         }
+        public async Task<List<PartNoDrpDto>> GetPartNo()
+        {
+            return await _context.Set<PartNoDrpDto>()
+                .FromSqlRaw("EXEC API_pr_fetch_PartNo")
+                .ToListAsync();
+        }
 
         public async Task<List<ReqConditionDto>> GetMoldReqCondition()
         {
