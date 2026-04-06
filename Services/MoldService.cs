@@ -103,6 +103,10 @@ namespace MoldApi.Services
         {
             return await _repo.UpdateMoldPMSchedule(dto);
         }
+        public async Task<string> UpdateMoldMst(UpdateMouldMstDto dto)
+        {
+            return await _repo.UpdateMoldMst(dto);
+        }
         public async Task<string> DeletePMPlan(int id)
         {
             return await _repo.DeletePMPlan(id);

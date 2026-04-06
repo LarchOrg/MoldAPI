@@ -143,6 +143,16 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpPut("UpdateMouldMst")]
+        public async Task<IActionResult> UpdateMoldMst(UpdateMouldMstDto dto)
+        {
+            var result = await _service.UpdateMoldMst(dto);
+
+            if (result.Contains("Already"))
+                return BadRequest(result);
+
+            return Ok(result);
+        }
         [HttpDelete("pmplan/{id}")]
         public async Task<IActionResult> DeletePMPlan(int id)
         {
