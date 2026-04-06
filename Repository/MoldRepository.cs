@@ -210,6 +210,21 @@ namespace MoldApi.Repository
             }
         }
 
+        public async Task<MouldMstByIdDto> GetMouldMstById(int id)
+        {
+            var param = new SqlParameter("@Id", id);
+
+            // Execute SP and fetch results
+            var resultList = await _context.MouldMstByIdDto
+                .FromSqlRaw("EXEC API_Pr_Fetch_mould_mst_ById @Id", param)
+                .AsNoTracking()    
+                .ToListAsync();  
+
+            // Pick the first record
+            var result = resultList.FirstOrDefault();
+
+            return result;
+        }
         public async Task<MoldPMScheduleIdDto> GetPMScheduleById(int id)
         {
             var param = new SqlParameter("@Id", id);

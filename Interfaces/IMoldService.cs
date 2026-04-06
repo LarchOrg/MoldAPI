@@ -22,7 +22,7 @@ namespace MoldApi.Interfaces
         Task<string> InsertMoldMst(InsertMouldMstDto dto);
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);
         Task<string> DeletePMPlan(int id);
-
+        Task<MouldMstByIdDto> GetMouldMstById(int id);
         Task<MoldPMScheduleIdDto> GetPMScheduleById(int id);
     }
 }
