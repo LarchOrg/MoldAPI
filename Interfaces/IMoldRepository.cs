@@ -26,7 +26,7 @@ namespace MoldApi.Interfaces
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);
         Task<string> UpdateMoldMst(UpdateMouldMstDto dto);
         Task<string> DeletePMPlan(int id);
-
+        Task<string> InsertCheckMasterAsync(CheckInsertDto dto);
         Task<MoldPMScheduleIdDto> GetPMScheduleById(int id);
         Task<MouldMstByIdDto> GetMouldMstById(int id);
     }
