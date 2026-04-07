@@ -5,6 +5,13 @@
         public int MoldId { get; set; }
         public string MoldName { get; set; }
     }
+
+    public class CheckInsertDto
+    {
+        public string Type { get; set; }   // AREA | POINT | METHOD | RESULT
+        public string Name { get; set; }
+        public int CreatedBy { get; set; }
+    }
     public class UpdateMouldMstDto
     {
 

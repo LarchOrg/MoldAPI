@@ -104,6 +104,36 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpPost("Insert-CheckAll")]
+        public async Task<IActionResult> InsertCheckMasterAsync(CheckInsertDto dto)
+        {
+            var result = await _service.InsertCheckMasterAsync(dto);
+
+            if (result.Contains("Check Area %s already exists.") || result.Contains("Check Point %s already exists.")
+                || result.Contains("Check Method %s already exists.") || result.Contains("Req Condition %s already exists."))
+            {
+                return BadRequest(new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            if (result.Contains("Exception") || result.Contains("Error"))
+            {
+                return StatusCode(500, new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            return Ok(new ERRORAPIDTO
+            {
+                Success = true,
+                Message = result
+            });
+        }
         [HttpPost("InsertMould")]
         public async Task<IActionResult> InsertMoldMst(InsertMouldMstDto dto)
         {

@@ -108,8 +108,7 @@ namespace MoldApi.Repository
             try
             {
                 await _context.Database.ExecuteSqlRawAsync(
-                    @"EXEC API_pr_update_Mould_mst 
-                @iId,
+                    @"EXEC API_pr_update_Mould_mst @iId,
                 @vCode,
                 @vName,
                 @vSize,
@@ -230,6 +229,24 @@ namespace MoldApi.Repository
 
                     new SqlParameter("@vBarcode", dto.Barcode ?? (object)DBNull.Value),
                     new SqlParameter("@vDirection", dto.Direction ?? (object)DBNull.Value)
+                );
+
+                return "Inserted Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        public async Task<string> InsertCheckMasterAsync(CheckInsertDto dto)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    "EXEC API_pr_insert_check_master @vType, @vName, @iCreatedBy",
+                    new SqlParameter("@vType", dto.Type),
+                    new SqlParameter("@vName", dto.Name),
+                    new SqlParameter("@iCreatedBy", dto.CreatedBy)
                 );
 
                 return "Inserted Successfully";
