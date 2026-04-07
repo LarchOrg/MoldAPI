@@ -125,8 +125,8 @@ namespace MoldApi.Controllers
         {
             var result = await _service.InsertCheckMasterAsync(dto);
 
-            if (result.Contains("Check Area %s already exists.") || result.Contains("Check Point %s already exists.")
-                || result.Contains("Check Method %s already exists.") || result.Contains("Req Condition %s already exists."))
+            if (result.Contains("Check Area already exists.") || result.Contains("Check Point already exists.")
+                || result.Contains("Check Method already exists.") || result.Contains("Req Condition already exists."))
             {
                 return BadRequest(new ERRORAPIDTO
                 {
