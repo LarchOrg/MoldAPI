@@ -96,13 +96,29 @@ namespace MoldApi.Controllers
         {
             var result = await _service.InsertMaintenanceSpecEntry(dto);
 
-            if (result.Contains("Already Exists"))
-                return BadRequest(result);
+            if (result.Contains("This Orderby No Already Exists!."))
+            {
+                return BadRequest(new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
 
             if (result.Contains("Exception") || result.Contains("Error"))
-                return StatusCode(500, result);
+            {
+                return StatusCode(500, new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
 
-            return Ok(result);
+            return Ok(new ERRORAPIDTO
+            {
+                Success = true,
+                Message = result
+            });
         }
         [HttpPost("Insert-CheckAll")]
         public async Task<IActionResult> InsertCheckMasterAsync(CheckInsertDto dto)
