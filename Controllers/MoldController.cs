@@ -86,8 +86,14 @@ namespace MoldApi.Controllers
         {
             var result = await _service.InsertMoldPMSchedule(dto);
 
-            if (result.Contains("Already"))
-                return BadRequest(result);
+            if (result.Contains("Mould already having plan for this month")|| (result.Contains("Plan for this Mould is already completed for this month")))
+            {
+                return BadRequest(new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
 
             return Ok(result);
         }
