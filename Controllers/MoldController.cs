@@ -126,6 +126,7 @@ namespace MoldApi.Controllers
                 Message = result
             });
         }
+
         [HttpPost("Insert-CheckAll")]
         public async Task<IActionResult> InsertCheckMasterAsync(CheckInsertDto dto)
         {
@@ -231,6 +232,16 @@ namespace MoldApi.Controllers
 
             if (result == null)
                 return NotFound("PM Schedule not found");
+
+            return Ok(result);
+        }
+        [HttpGet("pmspecentrybyid/{id}")]
+        public async Task<IActionResult> GetSpecEntryById(int id)
+        {
+            var result = await _service.GetSpecEntryById(id);
+
+            if (result == null)
+                return NotFound("Spec not found");
 
             return Ok(result);
         }
