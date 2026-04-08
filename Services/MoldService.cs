@@ -112,6 +112,10 @@ namespace MoldApi.Services
         {
             return await _repo.UpdateMoldMst(dto);
         }
+        public async Task<string> UpdateSpecEnrty(UpdateSpecEntrybyIdDto dto)
+        {
+            return await _repo.UpdateSpecEnrty(dto);
+        }
         public async Task<string> DeletePMPlan(int id)
         {
             return await _repo.DeletePMPlan(id);
