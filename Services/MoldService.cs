@@ -125,5 +125,10 @@ namespace MoldApi.Services
         {
             return await _repo.GetPMScheduleById(id);
         }
+        public async Task<MaintenanceSpecEntrybyIdDto> GetSpecEntryById(int id)
+
+        {
+            return await _repo.GetSpecEntryById(id);
+        }
     }
 }

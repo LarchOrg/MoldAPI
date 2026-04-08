@@ -302,6 +302,21 @@ namespace MoldApi.Repository
             }
         }
 
+        public async Task<MaintenanceSpecEntrybyIdDto> GetSpecEntryById(int id)
+        {
+            var param = new SqlParameter("@iID", id);
+
+            // Execute SP and fetch results
+            var resultList = await _context.MaintenanceSpecEntrybyIdDto
+                .FromSqlRaw("EXEC API_pr_fetch_Maintenance_Spec_Entry_mst_byId @iID", param)
+                .AsNoTracking()    
+                .ToListAsync();  
+
+            // Pick the first record
+            var result = resultList.FirstOrDefault();
+
+            return result;
+        }
         public async Task<MouldMstByIdDto> GetMouldMstById(int id)
         {
             var param = new SqlParameter("@Id", id);
