@@ -103,6 +103,42 @@ namespace MoldApi.Repository
                 .ToListAsync();
         }
 
+        public async Task<string> UpdateSpecEnrty(UpdateSpecEntrybyIdDto dto)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    @"EXEC API_pr_update_Specc_entry_Mst               
+                    @iId ,  
+                    @iPmfreq ,   
+                    @iCheckPoint ,                                                       
+                    @iCheckMethod ,   
+                    @iCheckAreas ,  
+                    @iRequiredCondition ,  
+                    @iImageId ,                                                                    
+                    @iOrderby ,                                              
+                    @iUpdatedBy ",
+
+                    new SqlParameter("@iId", dto.Id),
+                    new SqlParameter("@iPmfreq", dto.PMFreqId),
+                    new SqlParameter("@iCheckPoint", dto.CheckPointId),
+                    new SqlParameter("@iCheckMethod", dto.CheckMethodId),
+
+                    new SqlParameter("@iCheckAreas", dto.CheckAreaId),
+                    new SqlParameter("@iRequiredCondition", dto.ReqConditionId),
+                    new SqlParameter("@iImageId", dto.ImgId),
+                    new SqlParameter("@iOrderby", dto.OrderBy),
+
+                    new SqlParameter("@iUpdatedBy", dto.UpdateBy )
+                );
+
+                return "Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         public async Task<string> UpdateMoldMst(UpdateMouldMstDto dto)
         {
             try

@@ -101,6 +101,19 @@
         public int OrderBy { get; set; }
         public int ReqConditionId { get; set; }
     }
+    public class UpdateSpecEntrybyIdDto
+    {
+
+        public int Id { get; set; }
+        public int PMFreqId { get; set; }
+        public int CheckPointId { get; set; }
+        public int CheckMethodId { get; set; }
+        public int CheckAreaId { get; set; }
+        public int ImgId { get; set; }
+        public int OrderBy { get; set; }
+        public int ReqConditionId { get; set; }
+        public int UpdateBy { get; set; }
+    }
     public class CreateMaintenanceSpecEntryDto
     {
        
