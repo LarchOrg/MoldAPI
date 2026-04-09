@@ -417,5 +417,21 @@ namespace MoldApi.Repository
             return ex.Message; // will capture RAISERROR from SP
         }
     }
+        public async Task<string> DeletePMSpec(int id)
+    {
+        try
+        {
+            await _context.Database.ExecuteSqlRawAsync(
+                "EXEC API_pr_delete_Maintenance_Spec_Entry @iID",
+                new SqlParameter("@iID", id)
+            );
+
+            return "Deleted Successfully";
+        }
+        catch (Exception ex)
+        {
+            return ex.Message; // will capture RAISERROR from SP
+        }
+    }
 }
 }
