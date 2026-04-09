@@ -103,6 +103,10 @@ namespace MoldApi.Services
         {
             return await _repo.InsertCheckMasterAsync(dto);
         }
+        public async Task<string> CreateCheckSheet(CreateCheckSheetDto dto)
+        {
+            return await _repo.CreateCheckSheet(dto);
+        }
         public async Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto)
         {
             return await _repo.UpdateMoldPMSchedule(dto);

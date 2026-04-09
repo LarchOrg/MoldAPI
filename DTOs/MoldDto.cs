@@ -128,6 +128,13 @@
         public int ResultId { get; set; }
     }
 
+    public class CreateCheckSheetDto
+    {
+        public int ReportNo { get; set; }
+        public string PrepareBy { get; set; }
+        public int CreatedBy { get; set; }
+    }
+
     public class MouldMstByIdDto
     {
         public int Id { get; set; }

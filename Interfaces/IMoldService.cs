@@ -20,9 +20,11 @@ namespace MoldApi.Interfaces
         Task<string> InsertMoldPMSchedule(CreateMoldPMScheduleDto dto);
         Task<string> InsertMaintenanceSpecEntry(CreateMaintenanceSpecEntryDto dto);
         Task<string> InsertMoldMst(InsertMouldMstDto dto);
+        Task<string> CreateCheckSheet(CreateCheckSheetDto dto);
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);
         Task<string> UpdateMoldMst(UpdateMouldMstDto dto);
         Task<string> UpdateSpecEnrty(UpdateSpecEntrybyIdDto dto);
+
         Task<string> InsertCheckMasterAsync(CheckInsertDto dto);
         Task<string> DeletePMPlan(int id);
         Task<string> DeletePMSpec(int id);

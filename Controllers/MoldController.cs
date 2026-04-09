@@ -126,6 +126,35 @@ namespace MoldApi.Controllers
                 Message = result
             });
         }
+        [HttpPost("CreateCheckSheet")]
+        public async Task<IActionResult> CreateCheckSheet(CreateCheckSheetDto dto)
+        {
+            var result = await _service.CreateCheckSheet(dto);
+
+            if (result.Contains("This Particular Mould Not Assign the Spec Entry Master!."))
+            {
+                return BadRequest(new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            if (result.Contains("Exception") || result.Contains("Error"))
+            {
+                return StatusCode(500, new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            return Ok(new ERRORAPIDTO
+            {
+                Success = true,
+                Message = result
+            });
+        }
 
         [HttpPost("Insert-CheckAll")]
         public async Task<IActionResult> InsertCheckMasterAsync(CheckInsertDto dto)
