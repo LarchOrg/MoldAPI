@@ -103,6 +103,7 @@ namespace MoldApi.Services
         {
             return await _repo.InsertCheckMasterAsync(dto);
         }
+
         public async Task<string> CreateCheckSheet(CreateCheckSheetDto dto)
         {
             return await _repo.CreateCheckSheet(dto);
@@ -137,10 +138,17 @@ namespace MoldApi.Services
         {
             return await _repo.GetPMScheduleById(id);
         }
+
+
         public async Task<MaintenanceSpecEntrybyIdDto> GetSpecEntryById(int id)
 
         {
             return await _repo.GetSpecEntryById(id);
+        }
+        public async Task<List<MouldReportDto>> GetCheckSheetDetails(int id)
+
+        {
+            return await _repo.GetCheckSheetDetails(id);
         }
     }
 }

@@ -32,6 +32,7 @@ namespace MoldApi.Interfaces
         Task<string> InsertCheckMasterAsync(CheckInsertDto dto);
         Task<MaintenanceSpecEntrybyIdDto> GetSpecEntryById(int id);
         Task<MoldPMScheduleIdDto> GetPMScheduleById(int id);
+        Task<List<MouldReportDto>> GetCheckSheetDetails(int id);
         Task<MouldMstByIdDto> GetMouldMstById(int id);
     }
 

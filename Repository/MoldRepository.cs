@@ -5,6 +5,8 @@ using MoldApi.DTOs;
 using MoldApi.Entities;
 using MoldApi.Interfaces;
 using System;
+using System.Data;
+using static MoldApi.Repository.MoldRepository;
 
 namespace MoldApi.Repository
 {
@@ -370,6 +372,17 @@ namespace MoldApi.Repository
             var result = resultList.FirstOrDefault();
 
             return result;
+        }
+        public async Task<List<MouldReportDto>> GetCheckSheetDetails(int id)
+        {
+            var param = new SqlParameter("@iReportNo", id);
+
+            var resultList = await _context.MouldReportDto
+                .FromSqlRaw("EXEC API_pr_fetch_MouldCheckSheet_Entry @iReportNo", param)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return resultList;
         }
         public async Task<MouldMstByIdDto> GetMouldMstById(int id)
         {

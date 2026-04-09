@@ -292,6 +292,16 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpGet("CheckSheetDetails/{id}")]
+        public async Task<IActionResult> GetCheckSheetDetails(int id)
+        {
+            var result = await _service.GetCheckSheetDetails(id);
+
+            if (result == null)
+                return NotFound("Spec not found");
+
+            return Ok(result);
+        }
 
 
     }
