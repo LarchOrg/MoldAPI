@@ -311,6 +311,24 @@ namespace MoldApi.Repository
                 return ex.Message;
             }
         }
+        public async Task<string> CreateCheckSheet(CreateCheckSheetDto dto)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    "EXEC API_Insert_Create_MouldCheckSheet_Entry @iReportNo, @vPreparedBy, @iCreatedBy",
+                    new SqlParameter("@iReportNo", dto.ReportNo),
+                    new SqlParameter("@vPreparedBy", dto.PrepareBy),
+                    new SqlParameter("@iCreatedBy", dto.CreatedBy)
+                );
+
+                return "CheckSheet Created!";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
 
         public async Task<string> InsertMaintenanceSpecEntry(CreateMaintenanceSpecEntryDto dto)
         {
