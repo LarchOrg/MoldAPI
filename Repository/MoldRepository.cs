@@ -59,6 +59,12 @@ namespace MoldApi.Repository
                 .FromSqlRaw("EXEC API_Pr_Fetch_Cheack_Areas_Drp")
                 .ToListAsync();
         }
+        public async Task<List<CurrentStsDto>> GetCurrentSts()
+        {
+            return await _context.Set<CurrentStsDto>()
+                .FromSqlRaw("EXEC API_pr_fetch_currentstatus")
+                .ToListAsync();
+        }
 
         public async Task<List<CheckPointDto>> GetMoldCheckPoint()
         {
