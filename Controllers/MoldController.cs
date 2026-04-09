@@ -224,6 +224,14 @@ namespace MoldApi.Controllers
                 return NotFound(result);
             return Ok(result);
         }
+        [HttpDelete("PMSpec/{id}")]
+        public async Task<IActionResult> DeletePMSpec(int id)
+        {
+            var result = await _service.DeletePMSpec(id);
+            if (result.Contains("not found") || result.Contains("Error"))
+                return NotFound(result);
+            return Ok(result);
+        }
 
         [HttpGet("mouldbyid/{id}")]
         public async Task<IActionResult> GetMouldMstById(int id)
