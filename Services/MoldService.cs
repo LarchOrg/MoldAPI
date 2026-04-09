@@ -38,7 +38,7 @@ namespace MoldApi.Services
             };
         }
 
-        // ✅ Optimized dropdown
+        
         public async Task<List<MoldDropdownDto>> GetMoldDropdown()
         {
             return await _repo.GetMoldDropdown();
@@ -50,6 +50,7 @@ namespace MoldApi.Services
             var points = await _repo.GetMoldCheckPoint();
             var conditions = await _repo.GetMoldReqCondition();
             var partno = await _repo.GetPartNo();
+            var currentstatus = await _repo.GetCurrentSts();
 
 
             return new AllDropdownsDto
@@ -58,7 +59,8 @@ namespace MoldApi.Services
                 CheckMethod = methods,
                 CheckPoint = points,
                 ReqCondition = conditions,
-                PartNoDrp = partno
+                PartNoDrp = partno,
+                CurrentSts = currentstatus
             };
         }
         public async Task<List<MoldDropdownDto>> GetMoldImgDropdown()

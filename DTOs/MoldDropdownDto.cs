@@ -27,6 +27,14 @@
         public int Id { get; set; }
         public string CheckPoint { get; set; }
     }
+    public class CurrentStsDto
+    {
+        public int Id { get; set; }
+        public string CurrentStatus { get; set; }
+        public string Type { get; set; }
+
+
+    }
 
     public class ReqConditionDto
     {
@@ -42,5 +50,6 @@
         public List<CheckMethodDto> CheckMethod { get; set; }
         public List<CheckPointDto> CheckPoint { get; set; }
         public List<ReqConditionDto> ReqCondition { get; set; }
+        public List<CurrentStsDto> CurrentSts { get; set; }
     }
 }
