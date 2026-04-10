@@ -32,7 +32,7 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseCors("AllowReactDev");
-
+app.UseStaticFiles();
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
