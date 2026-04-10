@@ -470,5 +470,34 @@ namespace MoldApi.Repository
             return ex.Message; // will capture RAISERROR from SP
         }
     }
-}
+
+        public async Task<string> UpdateMouldCheckSheet(UpdateMouldCheckSheetDto dto, string? beforeImageName, string? afterImageName)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    @"EXEC pr_update_mould_checksheet 
+                @iTransId, 
+                @vCurrentStatus, 
+                @vActiontaken, 
+                @BeforeImageName, 
+                @AfterImageName, 
+                @vRemarks",
+                    new SqlParameter("@iTransId", dto.TransId),
+                    new SqlParameter("@vCurrentStatus", dto.CurrentStatus ?? (object)DBNull.Value),
+                    new SqlParameter("@vActiontaken", dto.ActionTaken ?? (object)DBNull.Value),
+                    new SqlParameter("@BeforeImageName", beforeImageName ?? (object)DBNull.Value),
+                    new SqlParameter("@AfterImageName", afterImageName ?? (object)DBNull.Value),
+                    new SqlParameter("@vRemarks", dto.Remarks ?? (object)DBNull.Value)
+                );
+
+                return "Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+    }
 }

@@ -303,6 +303,27 @@ namespace MoldApi.Controllers
             return Ok(result);
         }
 
+        [HttpPut("UpdateCheckSheet")]
+        public async Task<IActionResult> UpdateMouldCheckSheet([FromForm] UpdateMouldCheckSheetDto dto)
+        {
+            var result = await _service.UpdateMouldCheckSheet(dto);
+
+            if (result.Contains("Exception") || result.Contains("Error"))
+            {
+                return StatusCode(500, new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            return Ok(new ERRORAPIDTO
+            {
+                Success = true,
+                Message = result
+            });
+        }
+
 
     }
 }
