@@ -156,49 +156,58 @@ namespace MoldApi.Services
 
         public async Task<string> UpdateMouldCheckSheet(UpdateMouldCheckSheetDto dto)
         {
-            string? beforeImageName = null;
-            string? afterImageName = null;
-
-            // Base folder: wwwroot/CheckSheetImages/
-            string baseFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "CheckSheetImages");
-
-            string beforeFolder = Path.Combine(baseFolder, "BeforeImages");
-            string afterFolder = Path.Combine(baseFolder, "AfterImages");
-
-            // Create folders if they don't exist
-            if (!Directory.Exists(beforeFolder))
-                Directory.CreateDirectory(beforeFolder);
-
-            if (!Directory.Exists(afterFolder))
-                Directory.CreateDirectory(afterFolder);
-
-            // Save Before Image
-            if (dto.BeforeImage != null && dto.BeforeImage.Length > 0)
+            try
             {
-                string beforeExt = Path.GetExtension(dto.BeforeImage.FileName);
-                beforeImageName = $"Before_{dto.TransId}_{DateTime.Now:yyyyMMddHHmmss}{beforeExt}";
-                string beforePath = Path.Combine(beforeFolder, beforeImageName);
+                string? beforeImageName = null;
+                string? afterImageName = null;
 
-                using (var stream = new FileStream(beforePath, FileMode.Create))
+                // 2 levels up from app (out of YourApp, out of wwwroot)
+                // Result: C:\inetpub\UploadImages\
+                // 0 levels up - folder is inside project
+                string baseFolder = Path.GetFullPath(
+                    Path.Combine(Directory.GetCurrentDirectory(), "UploadImages"));
+                string beforeFolder = Path.Combine(baseFolder, "BeforeImages");
+                string afterFolder = Path.Combine(baseFolder, "AfterImages");
+
+                // Create folders if they don't exist
+                if (!Directory.Exists(beforeFolder))
+                    Directory.CreateDirectory(beforeFolder);
+
+                if (!Directory.Exists(afterFolder))
+                    Directory.CreateDirectory(afterFolder);
+
+                // Save Before Image
+                if (dto.BeforeImage != null && dto.BeforeImage.Length > 0)
                 {
-                    await dto.BeforeImage.CopyToAsync(stream);
-                }
-            }
+                    string beforeExt = Path.GetExtension(dto.BeforeImage.FileName);
+                    beforeImageName = $"Before_{dto.TransId}_{DateTime.Now:yyyyMMddHHmmss}{beforeExt}";
+                    string beforePath = Path.Combine(beforeFolder, beforeImageName);
 
-            // Save After Image
-            if (dto.AfterImage != null && dto.AfterImage.Length > 0)
+                    using (var stream = new FileStream(beforePath, FileMode.Create))
+                    {
+                        await dto.BeforeImage.CopyToAsync(stream);
+                    }
+                }
+
+                // Save After Image
+                if (dto.AfterImage != null && dto.AfterImage.Length > 0)
+                {
+                    string afterExt = Path.GetExtension(dto.AfterImage.FileName);
+                    afterImageName = $"After_{dto.TransId}_{DateTime.Now:yyyyMMddHHmmss}{afterExt}";
+                    string afterPath = Path.Combine(afterFolder, afterImageName);
+
+                    using (var stream = new FileStream(afterPath, FileMode.Create))
+                    {
+                        await dto.AfterImage.CopyToAsync(stream);
+                    }
+                }
+
+                return await _repo.UpdateMouldCheckSheet(dto, beforeImageName, afterImageName);
+            }
+            catch (Exception ex)
             {
-                string afterExt = Path.GetExtension(dto.AfterImage.FileName);
-                afterImageName = $"After_{dto.TransId}_{DateTime.Now:yyyyMMddHHmmss}{afterExt}";
-                string afterPath = Path.Combine(afterFolder, afterImageName);
-
-                using (var stream = new FileStream(afterPath, FileMode.Create))
-                {
-                    await dto.AfterImage.CopyToAsync(stream);
-                }
+                return $"Exception: {ex.Message} | Inner: {ex.InnerException?.Message}";
             }
-
-            return await _repo.UpdateMouldCheckSheet(dto, beforeImageName, afterImageName);
         }
     }
 }

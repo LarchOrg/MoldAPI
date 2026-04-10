@@ -3,18 +3,19 @@ using MoldApi.Interfaces;
 using MoldApi.Repository;
 using MoldApi.Services;
 using Microsoft.EntityFrameworkCore;
-var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// ✅ Change WebRootPath to UploadImages instead of wwwroot
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    WebRootPath = "UploadImages"
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddScoped<IMoldService, MoldService>();
 builder.Services.AddScoped<IMoldRepository, MoldRepository>();
-
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -23,16 +24,18 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactDev",
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173","https://localhost:5173", "https://mold.larcherp.com", "http://mold.larcherp.com") // React dev URL
+            policy.WithOrigins(
+                "http://localhost:5173",
+                "https://localhost:5173",
+                "https://mold.larcherp.com",
+                "http://mold.larcherp.com")
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
 });
 
 var app = builder.Build();
-app.UseHttpsRedirection();
-app.UseCors("AllowReactDev");
-app.UseStaticFiles();
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -41,9 +44,20 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
+app.UseCors("AllowReactDev");
+
+var imagePath = Path.GetFullPath(
+    Path.Combine(Directory.GetCurrentDirectory(), "UploadImages"));
+
+if (!Directory.Exists(imagePath))
+    Directory.CreateDirectory(imagePath);
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new Microsoft.Extensions.FileProviders.PhysicalFileProvider(imagePath),
+    RequestPath = "/UploadImages"
+});
 
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
