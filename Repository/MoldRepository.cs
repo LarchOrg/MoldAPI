@@ -499,5 +499,33 @@ namespace MoldApi.Repository
             }
         }
 
+
+
+        public async Task<string> UpdateMouldCheckSheetEntry(UpdateMouldCheckSheetEntryDto dto)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    @"EXEC Pr_Update_Mould_CheckSheet_Entry 
+                @iReportNo,
+                @vpreparedby,
+                @vcheckedby,
+                @vapprovedby,
+                @iCreatedBy",
+                    new SqlParameter("@iReportNo", dto.ReportNo),
+                    new SqlParameter("@vpreparedby", dto.PreparedBy ?? (object)DBNull.Value),
+                    new SqlParameter("@vcheckedby", dto.CheckedBy ?? (object)DBNull.Value),
+                    new SqlParameter("@vapprovedby", dto.ApprovedBy ?? (object)DBNull.Value),
+                    new SqlParameter("@iCreatedBy", dto.CreatedBy)
+                );
+
+                return "Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                return $"Exception: {ex.Message} | Inner: {ex.InnerException?.Message}";
+            }
+        }
+
     }
 }

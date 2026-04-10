@@ -36,5 +36,6 @@ namespace MoldApi.Interfaces
 
 
         Task<string> UpdateMouldCheckSheet(UpdateMouldCheckSheetDto dto);
+        Task<string> UpdateMouldCheckSheetEntry(UpdateMouldCheckSheetEntryDto dto);
     }
 }
