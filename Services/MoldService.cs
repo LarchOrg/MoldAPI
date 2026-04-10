@@ -209,5 +209,12 @@ namespace MoldApi.Services
                 return $"Exception: {ex.Message} | Inner: {ex.InnerException?.Message}";
             }
         }
+
+
+        public async Task<string> UpdateMouldCheckSheetEntry(UpdateMouldCheckSheetEntryDto dto)
+        {
+            return await _repo.UpdateMouldCheckSheetEntry(dto);
+        }
+
     }
 }
