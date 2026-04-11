@@ -65,7 +65,7 @@
         public DateOnly UsedFrom { get; set; }
 
         public string? Category { get; set; }
-        public int PMFreq { get; set; }
+        //public int PMFreq { get; set; }
 
         public int PMFreqDays { get; set; }
         public int PMFreqShots { get; set; }
