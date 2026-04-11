@@ -152,5 +152,69 @@ namespace MoldApi.Services
         {
             return await _repo.GetCheckSheetDetails(id);
         }
+
+
+        public async Task<string> UpdateMouldCheckSheet(UpdateMouldCheckSheetDto dto)
+        {
+            try
+            {
+                string? beforeImageName = null;
+                string? afterImageName = null;
+
+                // 2 levels up from app (out of YourApp, out of wwwroot)
+                // Result: C:\inetpub\UploadImages\
+                // 0 levels up - folder is inside project
+                string baseFolder = Path.GetFullPath(
+                    Path.Combine(Directory.GetCurrentDirectory(), "UploadImages"));
+                string beforeFolder = Path.Combine(baseFolder, "BeforeImages");
+                string afterFolder = Path.Combine(baseFolder, "AfterImages");
+
+                // Create folders if they don't exist
+                if (!Directory.Exists(beforeFolder))
+                    Directory.CreateDirectory(beforeFolder);
+
+                if (!Directory.Exists(afterFolder))
+                    Directory.CreateDirectory(afterFolder);
+
+                // Save Before Image
+                if (dto.BeforeImage != null && dto.BeforeImage.Length > 0)
+                {
+                    string beforeExt = Path.GetExtension(dto.BeforeImage.FileName);
+                    beforeImageName = $"Before_{dto.TransId}_{DateTime.Now:yyyyMMddHHmmss}{beforeExt}";
+                    string beforePath = Path.Combine(beforeFolder, beforeImageName);
+
+                    using (var stream = new FileStream(beforePath, FileMode.Create))
+                    {
+                        await dto.BeforeImage.CopyToAsync(stream);
+                    }
+                }
+
+                // Save After Image
+                if (dto.AfterImage != null && dto.AfterImage.Length > 0)
+                {
+                    string afterExt = Path.GetExtension(dto.AfterImage.FileName);
+                    afterImageName = $"After_{dto.TransId}_{DateTime.Now:yyyyMMddHHmmss}{afterExt}";
+                    string afterPath = Path.Combine(afterFolder, afterImageName);
+
+                    using (var stream = new FileStream(afterPath, FileMode.Create))
+                    {
+                        await dto.AfterImage.CopyToAsync(stream);
+                    }
+                }
+
+                return await _repo.UpdateMouldCheckSheet(dto, beforeImageName, afterImageName);
+            }
+            catch (Exception ex)
+            {
+                return $"Exception: {ex.Message} | Inner: {ex.InnerException?.Message}";
+            }
+        }
+
+
+        public async Task<string> UpdateMouldCheckSheetEntry(UpdateMouldCheckSheetEntryDto dto)
+        {
+            return await _repo.UpdateMouldCheckSheetEntry(dto);
+        }
+
     }
 }

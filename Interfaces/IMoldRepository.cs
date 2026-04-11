@@ -35,6 +35,8 @@ namespace MoldApi.Interfaces
         Task<MoldPMScheduleIdDto> GetPMScheduleById(int id);
         Task<List<MouldReportDto>> GetCheckSheetDetails(int id);
         Task<MouldMstByIdDto> GetMouldMstById(int id);
+        Task<string> UpdateMouldCheckSheet(UpdateMouldCheckSheetDto dto, string? beforeImageName, string? afterImageName);
+        Task<string> UpdateMouldCheckSheetEntry(UpdateMouldCheckSheetEntryDto dto);
     }
 
 }
