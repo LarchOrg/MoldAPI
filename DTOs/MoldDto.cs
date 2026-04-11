@@ -65,7 +65,7 @@
         public DateOnly UsedFrom { get; set; }
 
         public string? Category { get; set; }
-        public int PMFreq { get; set; }
+        //public int PMFreq { get; set; }
 
         public int PMFreqDays { get; set; }
         public int PMFreqShots { get; set; }
@@ -127,7 +127,30 @@
         public int CheckAreaId { get; set; }
         public int ResultId { get; set; }
     }
+    public class MouldPMReportDto
+    {
+        public int TransId { get; set; }
 
+        public string? ReportNo { get; set; }
+
+        public string? Mould { get; set; }
+
+        public string? Prepared { get; set; }
+
+        public string? Checked { get; set; }
+
+        public string? Approved { get; set; }
+
+        public string? MouldName { get; set; }
+
+        public string? Date { get; set; }
+
+        public string? PMFreq { get; set; }
+
+        public string? TargetDate { get; set; }
+
+        public string? Status { get; set; }
+    }
     public class CreateCheckSheetDto
     {
         public int ReportNo { get; set; }

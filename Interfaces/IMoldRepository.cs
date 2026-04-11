@@ -10,6 +10,7 @@ namespace MoldApi.Interfaces
 
         Task<List<MoldDropdownDto>> GetMoldDropdown();
         Task<List<MoldDropdownDto>> GetMoldImgDropdown();
+
         Task<List<MoldDropdownDto>> GetPMDropdown();
         Task<List<MouldPMPlanDto>> GetPMPlanDetails();
         Task<List<CurrentStsDto>> GetCurrentSts();
@@ -34,7 +35,7 @@ namespace MoldApi.Interfaces
         Task<MaintenanceSpecEntrybyIdDto> GetSpecEntryById(int id);
         Task<MoldPMScheduleIdDto> GetPMScheduleById(int id);
         Task<List<MouldReportDto>> GetCheckSheetDetails(int id);
-        Task<MouldMstByIdDto> GetMouldMstById(int id);
+        Task<MouldMstByIdDto> GetMouldMstById(int id); Task<List<MouldPMReportDto>> GetPMMoldReport(DateOnly fromDate, DateOnly toDate);
         Task<string> UpdateMouldCheckSheet(UpdateMouldCheckSheetDto dto, string? beforeImageName, string? afterImageName);
         Task<string> UpdateMouldCheckSheetEntry(UpdateMouldCheckSheetEntryDto dto);
     }
