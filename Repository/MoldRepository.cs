@@ -364,6 +364,18 @@ namespace MoldApi.Repository
             }
         }
 
+        public async Task<List<MouldPMReportDto>> GetPMMoldReport(DateOnly fromDate, DateOnly toDate)
+        {
+            var from = new SqlParameter("@vFromDt", fromDate);
+            var to = new SqlParameter("@vToDt", toDate);  // was @dToDate, must match SP param name
+
+            var resultList = await _context.MouldPMReportDto
+                .FromSqlRaw("EXEC API_pr_fetch_lerp_Mould_CheckSheet_Summary @vFromDt, @vToDt", from, to)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return resultList;
+        }
         public async Task<MaintenanceSpecEntrybyIdDto> GetSpecEntryById(int id)
         {
             var param = new SqlParameter("@iID", id);

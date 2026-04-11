@@ -152,6 +152,11 @@ namespace MoldApi.Services
         {
             return await _repo.GetCheckSheetDetails(id);
         }
+        public async Task<List<MouldPMReportDto>> GetPMMoldReport(DateOnly fromDate, DateOnly toDate)
+
+        {
+            return await _repo.GetPMMoldReport(fromDate,toDate);
+        }
 
 
         public async Task<string> UpdateMouldCheckSheet(UpdateMouldCheckSheetDto dto)

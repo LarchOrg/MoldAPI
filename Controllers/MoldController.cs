@@ -272,6 +272,16 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpGet("PMReport/{fromDate},{toDate}")]
+        public async Task<IActionResult> GetPMMoldReport(DateOnly fromDate, DateOnly toDate)
+        {
+            var result = await _service.GetPMMoldReport(fromDate,toDate);
+
+            if (result == null)
+                return NotFound("not found");
+
+            return Ok(result);
+        }
         [HttpGet("pmschedulebyid/{id}")]
         public async Task<IActionResult> GetPMScheduleById(int id)
         {
