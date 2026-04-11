@@ -164,7 +164,7 @@ namespace MoldApi.Repository
                 @iItem,
                 @dUsedFrom,
                 @vCategory,
-                @vPMFreq,
+                
                 @iPMFreqDays,
                 @iPMFreqShots,
                 @vColor,
@@ -191,7 +191,7 @@ namespace MoldApi.Repository
                     new SqlParameter("@dUsedFrom", dto.UsedFrom),
 
                     new SqlParameter("@vCategory", dto.Category ?? (object)DBNull.Value),
-                    new SqlParameter("@vPMFreq", dto.PMFreq),
+                    //new SqlParameter("@vPMFreq", dto.PMFreq),
 
                     new SqlParameter("@iPMFreqDays", dto.PMFreqDays),
                     new SqlParameter("@iPMFreqShots", dto.PMFreqShots),
