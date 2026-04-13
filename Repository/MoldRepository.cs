@@ -408,6 +408,17 @@ namespace MoldApi.Repository
 
             return resultList;
         }
+        public async Task<List<DailyCheckSheetDto>> GetDailyCheckSheetDetails(int id)
+        {
+            var param = new SqlParameter("@iReportNo", id);
+
+            var resultList = await _context.DailyCheckSheetDto
+                .FromSqlRaw("EXEC API_pr_fetch_Daily_MouldCheckSheet_Entry @iReportNo", param)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return resultList;
+        }
         public async Task<MouldMstByIdDto> GetMouldMstById(int id)
         {
             var param = new SqlParameter("@Id", id);

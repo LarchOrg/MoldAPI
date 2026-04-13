@@ -101,6 +101,28 @@
         public int OrderBy { get; set; }
         public int ReqConditionId { get; set; }
     }
+    public class DailyCheckSheetDto
+    {
+        public int Id { get; set; }
+
+        public int? OrderBy { get; set; }
+
+        public string? CheckMethod { get; set; }
+
+        public string? CheckArea { get; set; }
+
+        public string? ReqCondition { get; set; }
+
+        public string? Checkpoint { get; set; }
+
+        public string? X1 { get; set; }
+
+        public string? X2 { get; set; }
+
+        public string? Remarks { get; set; }
+
+        public string? ActionTaken { get; set; }
+    }
     public class UpdateSpecEntrybyIdDto
     {
 

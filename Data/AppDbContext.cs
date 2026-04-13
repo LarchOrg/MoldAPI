@@ -33,10 +33,12 @@ namespace MoldApi.Data
             modelBuilder.Entity<MouldReportDto>().HasNoKey();
             modelBuilder.Entity<CurrentStsDto>().HasNoKey();
             modelBuilder.Entity<MouldPMReportDto>().HasNoKey();
+            modelBuilder.Entity<DailyCheckSheetDto>().HasNoKey();
         }
 
 
         public DbSet<MoldPlanCheckSheetFetchDto> MoldPlanCheckSheetFetchDto { get; set; }
+        public DbSet<DailyCheckSheetDto> DailyCheckSheetDto { get; set; }
         public DbSet<MouldPMReportDto> MouldPMReportDto { get; set; }
         public DbSet<MouldReportDto> MouldReportDto { get; set; }
         public DbSet<CurrentStsDto> CurrentStsDto { get; set; }

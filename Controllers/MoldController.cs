@@ -318,6 +318,16 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpGet("DailyCheckSheetDetails/{id}")]
+        public async Task<IActionResult> GetDailyCheckSheetDetails(int id)
+        {
+            var result = await _service.GetDailyCheckSheetDetails(id);
+
+            if (result == null)
+                return NotFound("Not found");
+
+            return Ok(result);
+        }
 
         [HttpPut("UpdateCheckSheet")]
         public async Task<IActionResult> UpdateMouldCheckSheet([FromForm] UpdateMouldCheckSheetDto dto)
