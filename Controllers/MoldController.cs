@@ -80,6 +80,12 @@ namespace MoldApi.Controllers
             var result = await _service.GetPMPlanDetails();
             return Ok(result);
         }
+        [HttpGet("DailyCheckSheet")]
+        public async Task<IActionResult> GetDailyCheckSheetFetch()
+        {
+            var result = await _service.GetDailyCheckSheetFetch();
+            return Ok(result);
+        }
 
         [HttpPost("pmschedule")]
         public async Task<IActionResult> InsertPMSchedule(CreateMoldPMScheduleDto dto)

@@ -67,6 +67,10 @@ namespace MoldApi.Services
         {
             return await _repo.GetMoldImgDropdown();
         }
+        public async Task<List<MoldPlanCheckSheetFetchDto>> GetDailyCheckSheetFetch()
+        {
+            return await _repo.GetDailyCheckSheetFetch();
+        }
         public async Task<List<PMMouldSpecFetchDto>> GetMoldSpecFetch()
         {
             return await _repo.GetMoldSpecFetch();

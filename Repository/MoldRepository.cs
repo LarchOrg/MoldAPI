@@ -44,7 +44,13 @@ namespace MoldApi.Repository
         public async Task<List<MoldPlanCheckSheetFetchDto>> GetPMCheckSheetFetch()
         {
             return await _context.Set<MoldPlanCheckSheetFetchDto>()
-                .FromSqlRaw("EXEC api_pr_fetch_mould_Daily_PM_schedule")
+                .FromSqlRaw("EXEC API_pr_fetch_mould_PM_CheckSheet")
+                .ToListAsync();
+        }
+        public async Task<List<MoldPlanCheckSheetFetchDto>> GetDailyCheckSheetFetch()
+        {
+            return await _context.Set<MoldPlanCheckSheetFetchDto>()
+                .FromSqlRaw("EXEC API_pr_fetch_mould_Daily_PM_schedule")
                 .ToListAsync();
         }
         public async Task<List<PMMouldMasterFetchDto>> GetMouldMstFetch()
