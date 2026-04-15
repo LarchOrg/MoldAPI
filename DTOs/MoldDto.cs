@@ -101,6 +101,25 @@
         public int OrderBy { get; set; }
         public int ReqConditionId { get; set; }
     }
+    public class UpdateDailyMouldChechSheetDto
+    {
+        public int Id { get; set; }                
+
+        public string Result { get; set; }    
+
+        public string Remarks { get; set; }       
+
+        public string CheckedBy { get; set; }    
+
+        public int UpdatedBy { get; set; }        
+    }
+    public class CompleteDto
+    {
+        public int ReportNo { get; set; }    
+        public string CheckedBy { get; set; }    
+
+        public int CreatedBy { get; set; }        
+    }
     public class DailyCheckSheetDto
     {
         public int Id { get; set; }

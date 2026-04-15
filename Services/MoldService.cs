@@ -123,6 +123,14 @@ namespace MoldApi.Services
         {
             return await _repo.UpdateMoldMst(dto);
         }
+        public async Task<string> CompleteDailyCheckSheet(CompleteDto dto)
+        {
+            return await _repo.CompleteDailyCheckSheet(dto);
+        }
+        public async Task<string> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto)
+        {
+            return await _repo.UpdateDailyMouldCheckSheetEntry(dto);
+        }
         public async Task<string> UpdateSpecEnrty(UpdateSpecEntrybyIdDto dto)
         {
             return await _repo.UpdateSpecEnrty(dto);
@@ -164,6 +172,11 @@ namespace MoldApi.Services
 
         {
             return await _repo.GetPMMoldReport(fromDate,toDate);
+        }
+        public async Task<List<MouldPMReportDto>> GetDailyMoldReport(DateOnly fromDate, DateOnly toDate)
+
+        {
+            return await _repo.GetDailyMoldReport(fromDate,toDate);
         }
 
 

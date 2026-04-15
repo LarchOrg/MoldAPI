@@ -288,6 +288,16 @@ namespace MoldApi.Controllers
 
             return Ok(result);
         }
+        [HttpGet("DailyReport/{fromDate},{toDate}")]
+        public async Task<IActionResult> GetDailyMoldReport(DateOnly fromDate, DateOnly toDate)
+        {
+            var result = await _service.GetDailyMoldReport(fromDate,toDate);
+
+            if (result == null)
+                return NotFound("not found");
+
+            return Ok(result);
+        }
         [HttpGet("pmschedulebyid/{id}")]
         public async Task<IActionResult> GetPMScheduleById(int id)
         {
@@ -356,6 +366,46 @@ namespace MoldApi.Controllers
         public async Task<IActionResult> UpdateMouldCheckSheetEntry(UpdateMouldCheckSheetEntryDto dto)
         {
             var result = await _service.UpdateMouldCheckSheetEntry(dto);
+
+            if (result.Contains("Exception") || result.Contains("Error"))
+            {
+                return StatusCode(500, new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            return Ok(new ERRORAPIDTO
+            {
+                Success = true,
+                Message = result
+            });
+        }
+        [HttpPut("UpdateDailyCheckSheet")]
+        public async Task<IActionResult> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto)
+        {
+            var result = await _service.UpdateDailyMouldCheckSheetEntry(dto);
+
+            if (result.Contains("Exception") || result.Contains("Error"))
+            {
+                return StatusCode(500, new ERRORAPIDTO
+                {
+                    Success = false,
+                    Message = result
+                });
+            }
+
+            return Ok(new ERRORAPIDTO
+            {
+                Success = true,
+                Message = result
+            });
+        }
+        [HttpPut("CompleteDailyCheckSheet")]
+        public async Task<IActionResult> CompleteDailyCheckSheet(CompleteDto dto)
+        {
+            var result = await _service.CompleteDailyCheckSheet(dto);
 
             if (result.Contains("Exception") || result.Contains("Error"))
             {
