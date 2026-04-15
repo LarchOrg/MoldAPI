@@ -19,6 +19,7 @@ namespace MoldApi.Interfaces
         Task<List<CheckPointDto>> GetMoldCheckPoint();
         Task<List<ReqConditionDto>> GetMoldReqCondition();
         Task<List<PMMouldSpecFetchDto>> GetMoldSpecFetch();
+        Task<List<MouldPMReportDto>> GetDailyMoldReport(DateOnly fromDate, DateOnly toDate);
         Task<List<MoldPlanCheckSheetFetchDto>> GetPMCheckSheetFetch();
         Task<List<PMMouldMasterFetchDto>> GetMouldMstFetch();
         Task<List<MoldPlanCheckSheetFetchDto>> GetDailyCheckSheetFetch();
@@ -30,6 +31,8 @@ namespace MoldApi.Interfaces
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);
         Task<string> UpdateMoldMst(UpdateMouldMstDto dto);
         Task<string> UpdateSpecEnrty(UpdateSpecEntrybyIdDto dto);
+        Task<string> CompleteDailyCheckSheet(CompleteDto dto);
+        Task<string> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto);
         Task<string> DeletePMPlan(int id);
         Task<string> DeletePMSpec(int id);
         Task<string> InsertCheckMasterAsync(CheckInsertDto dto);

@@ -382,6 +382,18 @@ namespace MoldApi.Repository
 
             return resultList;
         }
+        public async Task<List<MouldPMReportDto>> GetDailyMoldReport(DateOnly fromDate, DateOnly toDate)
+        {
+            var from = new SqlParameter("@vFromDt", fromDate);
+            var to = new SqlParameter("@vToDt", toDate);
+
+            var resultList = await _context.MouldPMReportDto
+                .FromSqlRaw("EXEC API_pr_fetch_daily_Mould_CheckSheet_Summary @vFromDt, @vToDt", from, to)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return resultList;
+        }
         public async Task<MaintenanceSpecEntrybyIdDto> GetSpecEntryById(int id)
         {
             var param = new SqlParameter("@iID", id);
@@ -545,6 +557,52 @@ namespace MoldApi.Repository
                     new SqlParameter("@vpreparedby", dto.PreparedBy ?? (object)DBNull.Value),
                     new SqlParameter("@vcheckedby", dto.CheckedBy ?? (object)DBNull.Value),
                     new SqlParameter("@vapprovedby", dto.ApprovedBy ?? (object)DBNull.Value),
+                    new SqlParameter("@iCreatedBy", dto.CreatedBy)
+                );
+
+                return "Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                return $"Exception: {ex.Message} | Inner: {ex.InnerException?.Message}";
+            }
+        }
+        public async Task<string> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    @"EXEC API_Pr_Update_Daily_MouldCheckSheet_Entry 
+                @iId,
+                @vInputDataX1,
+                @vRemarks,
+                @vcheckedby,
+                @iUpdatedBy",
+                    new SqlParameter("@iId", dto.Id),
+                    new SqlParameter("@vInputDataX1", dto.Result ?? (object)DBNull.Value),
+                    new SqlParameter("@vRemarks", dto.Remarks ?? (object)DBNull.Value),
+                    new SqlParameter("@vcheckedby", dto.CheckedBy ?? (object)DBNull.Value),
+                    new SqlParameter("@iUpdatedBy", dto.UpdatedBy)
+                );
+
+                return "Updated Successfully";
+            }
+            catch (Exception ex)
+            {
+                return $"Exception: {ex.Message} | Inner: {ex.InnerException?.Message}";
+            }
+        }
+        public async Task<string> CompleteDailyCheckSheet(CompleteDto dto)
+        {
+            try
+            {
+                await _context.Database.ExecuteSqlRawAsync(
+                    @"EXEC API_Pr_Complete_DailyCheck_Sheet 
+                @iReportNo,
+                @vcheckedby,
+                @iCreatedBy ",
+                    new SqlParameter("@iReportNo", dto.ReportNo ),
+                    new SqlParameter("@vcheckedby", dto.CheckedBy),
                     new SqlParameter("@iCreatedBy", dto.CreatedBy)
                 );
 
