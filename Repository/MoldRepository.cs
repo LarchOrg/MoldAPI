@@ -567,25 +567,28 @@ namespace MoldApi.Repository
                 return $"Exception: {ex.Message} | Inner: {ex.InnerException?.Message}";
             }
         }
-        public async Task<string> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto)
+        public async Task<string> UpdateDailyMouldCheckSheetEntry(List<UpdateDailyMouldChechSheetDto> dtoList)
         {
             try
             {
-                await _context.Database.ExecuteSqlRawAsync(
-                    @"EXEC API_Pr_Update_Daily_MouldCheckSheet_Entry 
-                @iId,
-                @vInputDataX1,
-                @vRemarks,
-                @vcheckedby,
-                @iUpdatedBy",
-                    new SqlParameter("@iId", dto.Id),
-                    new SqlParameter("@vInputDataX1", dto.Result ?? (object)DBNull.Value),
-                    new SqlParameter("@vRemarks", dto.Remarks ?? (object)DBNull.Value),
-                    new SqlParameter("@vcheckedby", dto.CheckedBy ?? (object)DBNull.Value),
-                    new SqlParameter("@iUpdatedBy", dto.UpdatedBy)
-                );
+                foreach (var dto in dtoList)
+                {
+                    await _context.Database.ExecuteSqlRawAsync(
+                        @"EXEC API_Pr_Update_Daily_MouldCheckSheet_Entry 
+                    @iId,
+                    @vInputDataX1,
+                    @vRemarks,
+                    @vcheckedby,
+                    @iUpdatedBy",
+                        new SqlParameter("@iId", dto.Id),
+                        new SqlParameter("@vInputDataX1", dto.Result ?? (object)DBNull.Value),
+                        new SqlParameter("@vRemarks", dto.Remarks ?? (object)DBNull.Value),
+                        new SqlParameter("@vcheckedby", dto.CheckedBy ?? (object)DBNull.Value),
+                        new SqlParameter("@iUpdatedBy", dto.UpdatedBy)
+                    );
+                }
 
-                return "Updated Successfully";
+                return "All records updated successfully";
             }
             catch (Exception ex)
             {

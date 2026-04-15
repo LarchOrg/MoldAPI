@@ -25,7 +25,7 @@ namespace MoldApi.Interfaces
         Task<string> UpdateMoldPMSchedule(UpdateMoldPMScheduleDto dto);
         Task<string> UpdateMoldMst(UpdateMouldMstDto dto);
         Task<string> UpdateSpecEnrty(UpdateSpecEntrybyIdDto dto);
-        Task<string> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto);
+        Task<string> UpdateDailyMouldCheckSheetEntry(List<UpdateDailyMouldChechSheetDto> dtoList);
         Task<List<MouldPMReportDto>> GetDailyMoldReport(DateOnly fromDate, DateOnly toDate);
         Task<string> CompleteDailyCheckSheet(CompleteDto dto);
         Task<string> InsertCheckMasterAsync(CheckInsertDto dto);

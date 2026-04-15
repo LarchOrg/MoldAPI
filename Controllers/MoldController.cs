@@ -383,9 +383,9 @@ namespace MoldApi.Controllers
             });
         }
         [HttpPut("UpdateDailyCheckSheet")]
-        public async Task<IActionResult> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto)
+        public async Task<IActionResult> UpdateDailyMouldCheckSheetEntry(List<UpdateDailyMouldChechSheetDto> dtoList)
         {
-            var result = await _service.UpdateDailyMouldCheckSheetEntry(dto);
+            var result = await _service.UpdateDailyMouldCheckSheetEntry(dtoList);
 
             if (result.Contains("Exception") || result.Contains("Error"))
             {

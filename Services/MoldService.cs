@@ -127,9 +127,9 @@ namespace MoldApi.Services
         {
             return await _repo.CompleteDailyCheckSheet(dto);
         }
-        public async Task<string> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto)
+        public async Task<string> UpdateDailyMouldCheckSheetEntry(List<UpdateDailyMouldChechSheetDto> dtoList)
         {
-            return await _repo.UpdateDailyMouldCheckSheetEntry(dto);
+            return await _repo.UpdateDailyMouldCheckSheetEntry(dtoList);
         }
         public async Task<string> UpdateSpecEnrty(UpdateSpecEntrybyIdDto dto)
         {

@@ -32,7 +32,7 @@ namespace MoldApi.Interfaces
         Task<string> UpdateMoldMst(UpdateMouldMstDto dto);
         Task<string> UpdateSpecEnrty(UpdateSpecEntrybyIdDto dto);
         Task<string> CompleteDailyCheckSheet(CompleteDto dto);
-        Task<string> UpdateDailyMouldCheckSheetEntry(UpdateDailyMouldChechSheetDto dto);
+        Task<string> UpdateDailyMouldCheckSheetEntry(List<UpdateDailyMouldChechSheetDto> dtoList);
         Task<string> DeletePMPlan(int id);
         Task<string> DeletePMSpec(int id);
         Task<string> InsertCheckMasterAsync(CheckInsertDto dto);
